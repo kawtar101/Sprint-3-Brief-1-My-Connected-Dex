@@ -1,0 +1,57 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Bouton principal */
+  .btn-primary {
+    @apply h-12 px-6 rounded-xl bg-brand text-white font-bold;
+  }
+
+  /* Bouton secondaire (contour) */
+  .btn-outline {
+    @apply h-11 px-4 rounded-xl border-2 border-ink bg-white text-ink font-bold ;
+  }
+
+  /* Bouton de filtre par type */
+  .chip {
+    @apply h-11 shrink-0 px-5 rounded-full border-2 border-line bg-white text-ink font-bold ;
+  }
+
+  /* Champ de formulaire */
+  .field {
+    @apply h-12 rounded-xl border-2 border-line bg-white px-3 text-base ;
+  }
+}
+
+/* Hover effect for creature cards */
+#grid > article {
+    transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+#grid > article:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgb(0 0 0 / 10%);
+}
+
+/* Visible keyboard focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+    outline: 3px solid #E3350D;
+    outline-offset: 3px;
+}
+
+/* Mouvement réduit pour les personnes qui le préfèrent */
+@media (prefers-reduced-motion: reduce) {
+  #grid > article {
+    transition: none;
+  }
+
+  #grid > article:hover {
+    transform: none;
+  }
+}
