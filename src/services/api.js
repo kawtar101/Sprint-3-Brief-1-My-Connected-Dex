@@ -1,6 +1,7 @@
-async function getData(){
+export async function getData(){
     const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
     const response = await fetch(url)
+    console.log("jajajja")
     if(!response.ok)
     {
         throw new Error (`Response status ${response.status}`)
@@ -16,6 +17,21 @@ async function getData(){
     }
     promises.push(res.json()) 
     }
-   const Data = await Promise.all(promises)
- 
+   const Data = await Promise.all(promises) 
+   localStorage.setItem("pokemonAPI",JSON.stringify(Data))
+}
+export function Loaddata()
+{
+    return JSON.parse(localStorage.getItem("pokemonAPI")) 
+} 
+function transformobj(obj){
+    const ob ={
+        id: ,
+        name: ,
+        type: ,
+        level: ,
+        stats: { hp: , attack: , defence:  },
+        image: ,
+        description: 
+    }
 }
