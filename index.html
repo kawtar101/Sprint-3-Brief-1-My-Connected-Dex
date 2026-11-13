@@ -56,11 +56,15 @@
       <!-- ===================== GRILLE DES CRÉATURES ================== -->
        <!-- id ="grid" : so the js can accede the data here -->
       <section class="flex flex-1 flex-col gap-6">
- <div id="grid" aria-label="Créatures"  class="grid lg:min-w-0 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"></div>     
+ <div id="grid" aria-label="Créatures"  class="grid lg:min-w-0 grid-cols-1 lg:h-250 lg:max-h-300 lg:overflow-scroll gap-5 md:grid-cols-2 lg:grid-cols-3"></div>     
  <div class="flex justify-center">
    <button id="load-more" type="button" class="btn-primary">
     load more
    </button>
+   <button id="clear-btn" type="button" class="btn-primary ml-4">
+    clear
+   </button>
+
  </div>
  </section>
       <aside class="flex flex-col  gap-6 lg:w-[420px] lg:shrink-0">
