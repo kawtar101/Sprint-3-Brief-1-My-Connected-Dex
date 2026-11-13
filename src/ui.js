@@ -81,7 +81,7 @@ export function displayCreatures(list) {
     grid.innerHTML = cards;
 }
 // Search and type filter
-function filterCreatures() {
+export function filterCreatures(creatures,selectedType) {
     let i = 0;
     //empty array for storing that match the search
     let results = [];
@@ -89,7 +89,6 @@ function filterCreatures() {
     while (i < creatures.length) {
         const creature = creatures[i];
         if (
-            creature.name.toLowerCase().includes(searchInput.value.toLowerCase()) &&
             (selectedType === "Tous" || creature.type === selectedType)
         ) {
             results.push(creature);
@@ -98,20 +97,11 @@ function filterCreatures() {
     }
     displayCreatures(results);
 }
-// Search while typing
-searchInput.addEventListener("input", filterCreatures);
 
-// Type filters
-const filters = document.getElementById("filters");
 
-filters.addEventListener("click", function(event) {
-    if (event.target.tagName === "BUTTON") {
-        selectedType = event.target.dataset.type;
-        filterCreatures();
-    }
-});
 
-displayCreatures(creatures);
+
+
 
 // Get the details panel elements
 //We select all these elements because we need to  update them when someone clicks a creature.
@@ -129,7 +119,7 @@ const detailType = document.getElementById("detail-type");
 const detailDefenceBar = document.getElementById("detail-defence-bar");
 
 // Cherche une créature dans le tableau à partir de son id
-function findCreature(id) {
+export function findCreature(creatures,id) {
     let j = 0;
     while (j < creatures.length) {
         if (creatures[j].id === id) {
