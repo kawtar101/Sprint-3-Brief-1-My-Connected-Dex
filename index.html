@@ -43,21 +43,26 @@
       </div>
       <div id="filters" role="group" aria-label="Filtrer par type" class="flex  flex-wrap gap-2 ">
           <button type="button" class="chip bg-ink text-white border-ink shrink-0" data-type="Tous">Tous</button>
-          <button type="button" class="chip shrink-0"data-type="Feu">Feu</button>
-          <button type="button" class="chip shrink-0"data-type="Eau">Eau</button>
-          <button type="button" class="chip shrink-0"data-type="Plante">Plante</button>
-          <button type="button" class="chip shrink-0"data-type="Électrik">Électrik</button>
-          <button type="button" class="chip shrink-0"data-type="Glace">Glace</button>
-          <button type="button" class="chip shrink-0"data-type="Ténèbres">Ténèbres</button>
+          <button type="button" class="chip shrink-0"data-type="fire">Fire</button>
+          <button type="button" class="chip shrink-0"data-type="water">water</button>
+          <button type="button" class="chip shrink-0"data-type="grass">grass</button>
+          <button type="button" class="chip shrink-0"data-type="electric">electric</button>
+          <button type="button" class="chip shrink-0"data-type="ice">ice</button>
+          <button type="button" class="chip shrink-0"data-type="dark">dark</button>
       </div>
     </section>
     <div class="flex flex-col items-stretch gap-8 lg:flex-row lg:items-start">
 
       <!-- ===================== GRILLE DES CRÉATURES ================== -->
        <!-- id ="grid" : so the js can accede the data here -->
-      <section id="grid" aria-label="Créatures" class="grid lg:min-w-0  grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
-      </section>
-
+      <section class="flex flex-1 flex-col gap-6">
+ <div id="grid" aria-label="Créatures"  class="grid lg:min-w-0 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3"></div>     
+ <div class="flex justify-center">
+   <button id="load-more" type="button" class="btn-primary">
+    load more
+   </button>
+ </div>
+ </section>
       <aside class="flex flex-col  gap-6 lg:w-[420px] lg:shrink-0">
        
         <!-- ===================== PANNEAU DE DÉTAIL ===================== -->
