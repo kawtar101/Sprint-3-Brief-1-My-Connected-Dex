@@ -105,6 +105,7 @@ export function filterCreatures(creatures,selectedType) {
 
 // Get the details panel elements
 //We select all these elements because we need to  update them when someone clicks a creature.
+export function setupDetails(creatures) {
         const detailImage = document.getElementById("detail-image");
     const detailName = document.getElementById("detail-name");
 const detailType = document.getElementById("detail-type");
@@ -119,7 +120,7 @@ const detailType = document.getElementById("detail-type");
 const detailDefenceBar = document.getElementById("detail-defence-bar");
 
 // Cherche une créature dans le tableau à partir de son id
-export function findCreature(creatures,id) {
+ function findCreature(creatures,id) {
     let j = 0;
     while (j < creatures.length) {
         if (creatures[j].id === id) {
@@ -144,7 +145,7 @@ grid.addEventListener("click", function(event) {
     const creatureId = card.dataset.creatureId;
 
     // Find the creature in the array
-    const selectedCreature = findCreature(creatureId);
+    const selectedCreature = findCreature(creatures,creatureId);
 
     // Stop if the creature was not found
     if (selectedCreature === null) {
@@ -160,7 +161,7 @@ grid.addEventListener("click", function(event) {
     detailDescription.textContent = selectedCreature.description;
 
     // Update the stat numbers
-    // detailHp.textContent = selectedCreature.stats.hp;
+    detailHp.textContent = selectedCreature.stats.hp;
        detailAttack.textContent = selectedCreature.stats.attack;
             detailDefence.textContent = selectedCreature.stats.defence;
 
@@ -170,3 +171,5 @@ grid.addEventListener("click", function(event) {
       detailDefenceBar.style.width = Math.min(selectedCreature.stats.defence, 200) / 200 * 100 + "%";
 
 });
+
+ } 

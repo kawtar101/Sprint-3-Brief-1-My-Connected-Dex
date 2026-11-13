@@ -1,5 +1,5 @@
 import { getData , Loaddata, saveData,searchCreature } from "./services/api.js";
-import{displayCreatures,filterCreatures} from "./ui.js"
+import{displayCreatures,filterCreatures ,setupDetails} from "./ui.js"
 
 let creatures = [];
 let selectedType = "Tous";
@@ -14,12 +14,13 @@ if(savedCREATURES && savedCREATURES.length > 0 ){
 else {
     creatures = await getData(0)
     offset = 20
+    setupDetails(creatures)
     saveData(creatures)
 }
  displayCreatures(creatures)
 }
 init()
-    
+
 
 // filter search
 
@@ -42,6 +43,7 @@ loadMoreBtn.addEventListener("click",async function(){
         //combines the old pokemon with the new pokemon
         creatures = creatures.concat(newCreatures)
         offset += 20
+        setupDetails(creatures)
         saveData(creatures)
         filterCreatures(creatures,selectedType)
     }catch(error){
@@ -85,3 +87,4 @@ clearbtn.addEventListener("click",async function() {
            arr = await getData(0)
            displayCreatures(arr)
 });
+setupDetails(creatures)
