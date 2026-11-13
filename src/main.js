@@ -1,13 +1,13 @@
-import { getData , Loaddata, saveData} from "./services/api.js";
+import { getData , Loaddata, saveData,searchCreature } from "./services/api.js";
 import{displayCreatures,filterCreatures} from "./ui.js"
 
 let creatures = [];
 let selectedType = "Tous";
 let offset = 0;
-
+searchCreature("pika")
 async function init(){
  const savedCREATURES = Loaddata();
-if(savedCREATURES && saveData.length > 0 ){
+if(savedCREATURES && savedCREATURES.length > 0 ){
     creatures = savedCREATURES
     offset  = creatures.length
 }
@@ -50,4 +50,22 @@ loadMoreBtn.addEventListener("click",async function(){
     loadMoreBtn.disabled = false
     }
 })
-//if the request  fails the offset doesnt increase so you can retry the same page
+//  ^^^^if the request  fails the offset doesnt increase so you can retry the same page^^
+const searchinputc= document.getElementById("search-input")
+
+searchinputc.addEventListener("keydown",async function(event){
+    if (event.key ==="Enter"){
+          console.log("ENTER PRESSED");
+        const name = searchinputc.value
+try{
+    //requests the pokemon from the api
+    const creature = await searchCreature(name)
+    //we do [creature ] instead of creature bcz displaycreture expects an array even if that array contains only one pokemon
+    displayCreatures([creature])
+}
+catch(error){
+    console.error(error)
+    alert("pokemon not found")
+}
+    }
+})

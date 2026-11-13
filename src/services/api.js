@@ -60,3 +60,14 @@ export function Loaddata()
 export function saveData(creatures){
     localStorage.setItem("pokemonAPI",JSON.stringify(creatures))
 }
+export async function searchCreature(name){
+    const url =`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase().trim()}`;
+    const response = await fetch(url)
+    if (!response.ok){
+        throw new Error(`pokemon nt found : ${name}`)
+
+    }
+    const data = await response.json()
+    //converts the API response into the object structure your project already uses
+    console.log (data.map(obj=>transformobj(obj)))
+}
