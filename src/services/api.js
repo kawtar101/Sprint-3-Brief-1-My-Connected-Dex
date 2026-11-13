@@ -1,37 +1,62 @@
-export async function getData(){
-    const url = "https://pokeapi.co/api/v2/pokemon?limit=20&offset=0"
+export async function getData(offset = 0){
+    const url = `https://pokeapi.co/api/v2/pokemon?limit=20&offset=${offset}`
     const response = await fetch(url)
-    console.log("jajajja")
+   
     if(!response.ok)
     {
         throw new Error (`Response status ${response.status}`)
     }
     const data = await response.json()
-    let promises =[]
-     for(const  obj of data.results )
+    //it transformrs the list of 20 URLS into a list of 20 promises
+    const promises =data.results.map(async(pokemon) => {
+const res = await fetch(pokemon.url)
+ if(!res.ok)
     {
-        const res = await fetch(obj.url)
-       if(!res.ok)
-    {
-        throw new Error (`Response status ${response.status}`)
+        throw new Error (`Response status ${res.status}`)
     }
-    promises.push(res.json()) 
-    }
+return res.json()
+    })
+
+    // let promises =[]
+    //  for(const  obj of data.results )
+    // {
+    //     const res = await fetch(obj.url)
+    //    if(!res.ok)
+    // {
+    //     throw new Error (`Response status ${res.status}`)
+    // }
+    // promises.push(res.json()) 
+    // }
    const Data = await Promise.all(promises) 
-   localStorage.setItem("pokemonAPI",JSON.stringify(Data))
+   //it trasformes the 20 detailed API objects into 20 simple objects 
+   const transformdata =Data.map(object => transformobj(object))
+//    localStorage.setItem("pokemonAPI",JSON.stringify(transformdata))
+//    console.log(transformdata)
+   return transformdata
+
+}
+
+function transformobj(obj){
+    return {
+        id:obj.id,
+        name:obj.name,
+        type: obj.types[0].type.name,
+        // level:obj.base_experience,
+        stats: {  hp: obj.stats[0].base_stat,
+             attack: obj.stats[1].base_stat,
+             defence: obj.stats[2].base_stat
+
+          },
+       
+        image:obj.sprites.other["official-artwork"].front_default,
+        // description: ""
+    }
+   
 }
 export function Loaddata()
 {
     return JSON.parse(localStorage.getItem("pokemonAPI")) 
 } 
-function transformobj(obj){
-    const ob ={
-        id: ,
-        name: ,
-        type: ,
-        level: ,
-        stats: { hp: , attack: , defence:  },
-        image: ,
-        description: 
-    }
+export function saveData(creatures){
+    localStorage.setItem("pokemonAPI",JSON.stringify(creatures))
 }
