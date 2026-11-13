@@ -16,22 +16,10 @@ const res = await fetch(pokemon.url)
     }
 return res.json()
     })
-
-    // let promises =[]
-    //  for(const  obj of data.results )
-    // {
-    //     const res = await fetch(obj.url)
-    //    if(!res.ok)
-    // {
-    //     throw new Error (`Response status ${res.status}`)
-    // }
-    // promises.push(res.json()) 
-    // }
    const Data = await Promise.all(promises) 
    //it trasformes the 20 detailed API objects into 20 simple objects 
    const transformdata =Data.map(object => transformobj(object))
-//    localStorage.setItem("pokemonAPI",JSON.stringify(transformdata))
-//    console.log(transformdata)
+
    return transformdata
 
 }
@@ -41,7 +29,7 @@ function transformobj(obj){
         id:obj.id,
         name:obj.name,
         type: obj.types[0].type.name,
-        // level:obj.base_experience,
+         level:obj.base_experience,
         stats: {  hp: obj.stats[0].base_stat,
              attack: obj.stats[1].base_stat,
              defence: obj.stats[2].base_stat
@@ -49,7 +37,7 @@ function transformobj(obj){
           },
        
         image:obj.sprites.other["official-artwork"].front_default,
-        // description: ""
+         description: ""
     }
    
 }
@@ -60,8 +48,10 @@ export function Loaddata()
 export function saveData(creatures){
     localStorage.setItem("pokemonAPI",JSON.stringify(creatures))
 }
-export async function searchCreature(name){
-    const url =`https://pokeapi.co/api/v2/pokemon/${name.toLowerCase().trim()}`;
+export async function searchCreature(name,offset=0){
+
+    const url =`https://pokeapi.co/api/v2/pokemon/${(name.toLowerCase())}`;
+    
     const response = await fetch(url)
     if (!response.ok){
         throw new Error(`pokemon nt found : ${name}`)
@@ -69,5 +59,6 @@ export async function searchCreature(name){
     }
     const data = await response.json()
     //converts the API response into the object structure your project already uses
-    console.log (data.map(obj=>transformobj(obj)))
+   console.log(transformobj(data))
+   return  transformobj(data);
 }
