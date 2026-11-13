@@ -619,71 +619,6 @@ video {
   line-height: 1.5rem;
 }
 
-/* Hover effect for creature cards */
-
-#grid > article {
-  transition: transform 200ms ease, box-shadow 200ms ease;
-}
-
-#grid > article:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 20px rgb(0 0 0 / 10%);
-}
-
-/* Visible keyboard focus */
-
-a:focus-visible,
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 3px solid #E3350D;
-  outline-offset: 3px;
-}
-
-/* Invalid fields */
-
-.field.is-invalid,
-textarea.is-invalid {
-  border-color: #DC2626;
-}
-
-/* Valid fields */
-
-.field.is-valid,
-textarea.is-valid {
-  border-color: #16A34A;
-}
-
-/* Validation messages */
-
-.error-message {
-  color: #DC2626;
-}
-
-.error-message:empty {
-  display: none;
-}
-
-/*when the equipe is complete the button deactivate*/
-
-button:disabled {
-  cursor: not-allowed;
-  opacity: 0.5;
-}
-
-/* Mouvement réduit pour les personnes qui le préfèrent */
-
-@media (prefers-reduced-motion: reduce) {
-  #grid > article {
-    transition: none;
-  }
-
-  #grid > article:hover {
-    transform: none;
-  }
-}
-
 .absolute {
   position: absolute;
 }
@@ -713,6 +648,10 @@ button:disabled {
   margin-top: 1rem;
 }
 
+.ml-4 {
+  margin-left: 1rem;
+}
+
 .block {
   display: block;
 }
@@ -729,12 +668,8 @@ button:disabled {
   height: 2.75rem;
 }
 
-.h-14 {
-  height: 3.5rem;
-}
-
-.h-20 {
-  height: 5rem;
+.h-28 {
+  height: 7rem;
 }
 
 .h-3 {
@@ -743,6 +678,10 @@ button:disabled {
 
 .h-36 {
   height: 9rem;
+}
+
+.h-40 {
+  height: 10rem;
 }
 
 .h-48 {
@@ -761,28 +700,16 @@ button:disabled {
   width: 2.75rem;
 }
 
-.w-14 {
-  width: 3.5rem;
+.w-28 {
+  width: 7rem;
 }
 
-.w-20 {
-  width: 5rem;
+.w-40 {
+  width: 10rem;
 }
 
 .w-6 {
   width: 1.5rem;
-}
-
-.w-\[30\%\] {
-  width: 30%;
-}
-
-.w-\[33\%\] {
-  width: 33%;
-}
-
-.w-\[43\%\] {
-  width: 43%;
 }
 
 .w-full {
@@ -801,8 +728,16 @@ button:disabled {
   max-width: 28rem;
 }
 
+.flex-1 {
+  flex: 1 1 0%;
+}
+
 .shrink-0 {
   flex-shrink: 0;
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 .grid-cols-1 {
@@ -877,6 +812,10 @@ button:disabled {
   gap: 2rem;
 }
 
+.overflow-scroll {
+  overflow: scroll;
+}
+
 .rounded-2xl {
   border-radius: 1rem;
 }
@@ -938,6 +877,11 @@ button:disabled {
 
 .bg-white\/10 {
   background-color: rgb(255 255 255 / 0.1);
+}
+
+.object-contain {
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 
 .p-3 {
@@ -1104,6 +1048,44 @@ button:disabled {
   outline-offset: 2px;
 }
 
+.filter {
+  filter: var(--tw-blur) var(--tw-brightness) var(--tw-contrast) var(--tw-grayscale) var(--tw-hue-rotate) var(--tw-invert) var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
+}
+
+/* Hover effect for creature cards */
+
+#grid > article {
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+
+#grid > article:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 20px rgb(0 0 0 / 10%);
+}
+
+/* Visible keyboard focus */
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid #E3350D;
+  outline-offset: 3px;
+}
+
+/* Mouvement réduit pour les personnes qui le préfèrent */
+
+@media (prefers-reduced-motion: reduce) {
+  #grid > article {
+    transition: none;
+  }
+
+  #grid > article:hover {
+    transform: none;
+  }
+}
+
 .focus-visible\:outline:focus-visible {
   outline-style: solid;
 }
@@ -1151,5 +1133,9 @@ button:disabled {
 
   .lg\:items-start {
     align-items: flex-start;
+  }
+
+  .lg\:overflow-scroll {
+    overflow: scroll;
   }
 }

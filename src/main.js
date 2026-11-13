@@ -4,7 +4,7 @@ import{displayCreatures,filterCreatures} from "./ui.js"
 let creatures = [];
 let selectedType = "Tous";
 let offset = 0;
-searchCreature("pika")
+
 async function init(){
  const savedCREATURES = Loaddata();
 if(savedCREATURES && savedCREATURES.length > 0 ){
@@ -55,8 +55,9 @@ const searchinputc= document.getElementById("search-input")
 
 searchinputc.addEventListener("keydown",async function(event){
     if (event.key ==="Enter"){
-          console.log("ENTER PRESSED");
-        const name = searchinputc.value
+        console.log("ENTER PRESSED");
+        const name = searchinputc.value.trim()
+        console.log(name)
 try{
     //requests the pokemon from the api
     const creature = await searchCreature(name)
@@ -69,3 +70,18 @@ catch(error){
 }
     }
 })
+const clearbtn = document.getElementById("clear-btn");
+clearbtn.addEventListener("click",async function() {
+    //clear the search input
+    if(!clearbtn)
+    {
+            return
+
+    }     
+           const grid = document.getElementById("grid");
+           grid.innerHTML = ""
+           let arr=[]
+          
+           arr = await getData(0)
+           displayCreatures(arr)
+});

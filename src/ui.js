@@ -160,7 +160,7 @@ grid.addEventListener("click", function(event) {
     detailDescription.textContent = selectedCreature.description;
 
     // Update the stat numbers
-    detailHp.textContent = selectedCreature.stats.hp;
+    // detailHp.textContent = selectedCreature.stats.hp;
        detailAttack.textContent = selectedCreature.stats.attack;
             detailDefence.textContent = selectedCreature.stats.defence;
 
